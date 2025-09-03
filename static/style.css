@@ -1,0 +1,207 @@
+/* --- NEW: Color variables for Light & Dark Themes --- */
+:root {
+    --primary-color: #007bff;
+    --background-color: #f4f7f6;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --completed-color: #28a745;
+    --input-bg: #ffffff;
+    --hover-bg: #f8f9fa;
+    --image-wrapper-bg: #212529;
+    --modal-overlay-bg: rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode {
+    --primary-color: #0d6efd;
+    --background-color: #121212;
+    --container-bg: #1e1e1e;
+    --text-color: #e3e3e3;
+    --text-muted: #8e8e8e;
+    --border-color: #444;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --completed-color: #198754;
+    --input-bg: #2a2a2a;
+    --hover-bg: #343434;
+    --image-wrapper-bg: #000;
+    --modal-overlay-bg: rgba(0, 0, 0, 0.8);
+}
+
+/* --- Auto Dark Mode based on OS preference --- */
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) {
+        --primary-color: #0d6efd;
+        --background-color: #121212;
+        --container-bg: #1e1e1e;
+        --text-color: #e3e3e3;
+        --text-muted: #8e8e8e;
+        --border-color: #444;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        --completed-color: #198754;
+        --input-bg: #2a2a2a;
+        --hover-bg: #343434;
+        --image-wrapper-bg: #000;
+        --modal-overlay-bg: rgba(0, 0, 0, 0.8);
+    }
+}
+
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color); margin: 0; padding: 20px;
+    transition: background-color 0.2s, color 0.2s;
+}
+.container {
+    max-width: 1200px; margin: auto; padding: 20px 30px;
+}
+.main-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 25px;
+}
+h1 {
+    text-align: center; color: var(--text-color); margin: 0;
+}
+#theme-toggle {
+    position: absolute;
+    right: 0;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Search Box */
+.search-container {
+    position: relative; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+#search-input {
+    width: 100%; padding: 15px; font-size: 1.1rem; border: 1px solid var(--border-color);
+    border-radius: 8px; box-sizing: border-box; background-color: var(--input-bg); color: var(--text-color);
+}
+#search-results {
+    position: absolute; width: 100%; background-color: var(--container-bg); border: 1px solid var(--border-color);
+    border-top: none; border-radius: 0 0 8px 8px; box-shadow: var(--shadow); max-height: 300px; overflow-y: auto; z-index: 1000;
+}
+.search-result-item { padding: 12px 15px; cursor: pointer; }
+.search-result-item:hover { background-color: var(--hover-bg); }
+#search-more-btn {
+    display: block; width: 100%; padding: 12px; border: none; background-color: var(--hover-bg); color: var(--text-color);
+    cursor: pointer; text-align: center; font-weight: bold;
+}
+
+/* Message Area */
+#message-area {
+    text-align: center; padding: 10px; margin-bottom: 15px; border-radius: 4px; display: none; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.message-success { background-color: #d1e7dd; color: #0f5132; }
+.message-error { background-color: #f8d7da; color: #842029; }
+.dark-mode .message-success { background-color: #0f5132; color: #d1e7dd; }
+.dark-mode .message-error { background-color: #842029; color: #f8d7da; }
+
+
+/* Anime Grid Layout */
+.anime-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px;
+}
+.anime-card {
+    background: var(--container-bg); border-radius: 8px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; overflow: hidden; transition: all 0.2s;
+}
+.card-image-wrapper {
+    position: relative; cursor: pointer; background-color: var(--image-wrapper-bg);
+}
+.card-image {
+    width: 100%; height: 170px; display: block; object-fit: contain;
+}
+.card-content {
+    padding: 15px; display: flex; flex-direction: column; flex-grow: 1;
+}
+.card-title {
+    font-size: 1.25rem; margin: 0 0 5px 0; cursor: pointer;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card-meta {
+    font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; text-transform: capitalize;
+}
+.card-description {
+    font-size: 0.9rem; color: var(--text-muted); margin: 0 0 15px 0; flex-grow: 1;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;
+}
+.card-actions {
+    margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;
+}
+.card-progress-episodes {
+    font-size: 0.9rem; font-weight: 500; color: var(--text-muted);
+}
+.control-btn {
+    width: 32px; height: 32px; border: 1px solid var(--border-color); background-color: transparent; color: var(--text-color);
+    border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 1.2rem; line-height: 1;
+}
+.remove-btn { font-size: 1rem; }
+.card-footer {
+    margin-top: auto; font-size: 0.8rem; color: var(--text-muted); text-align: center;
+}
+
+/* Linear Progress Bar Styles */
+.progress-container { margin-bottom: 15px; }
+.progress-bar {
+    width: 100%; height: 8px; border-radius: 4px; overflow: hidden; -webkit-appearance: none; appearance: none; border: none;
+}
+.progress-bar::-webkit-progress-bar { background-color: var(--border-color); }
+.progress-bar::-webkit-progress-value { background-color: var(--primary-color); }
+.progress-bar::-moz-progress-bar { background-color: var(--primary-color); }
+.progress-text {
+    font-size: 0.8rem; color: var(--text-muted); float: right; margin-top: 4px;
+}
+
+/* Completed Card Styles */
+.anime-card.is-completed { opacity: 0.6; }
+.anime-card.is-completed .progress-bar::-webkit-progress-value { background-color: var(--completed-color); }
+.anime-card.is-completed .progress-bar::-moz-progress-bar { background-color: var(--completed-color); }
+.anime-card.is-completed .card-image-wrapper::after {
+    content: 'Completed'; position: absolute; top: 12px; right: -34px; background: var(--completed-color);
+    color: white; padding: 5px 35px; font-size: 0.8rem; font-weight: bold; text-align: center;
+    transform: rotate(45deg); box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--modal-overlay-bg); display: flex;
+    align-items: center; justify-content: center; z-index: 2000;
+}
+.modal-content {
+    background: var(--container-bg); border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    max-width: 800px; width: 90%; max-height: 90vh; position: relative;
+    display: flex; flex-direction: column;
+}
+.modal-close-btn {
+    position: absolute; top: 10px; right: 15px; background: none; border: none;
+    font-size: 2rem; color: #aaa; cursor: pointer; line-height: 1; z-index: 10;
+}
+.modal-body { display: flex; padding: 25px; overflow-y: auto; }
+#modal-img {
+    width: 250px; height: auto; object-fit: contain; border-radius: 4px; margin-right: 25px;
+    background-color: var(--image-wrapper-bg); flex-shrink: 0;
+}
+#modal-title { margin-top: 0; color: var(--text-color); }
+#modal-meta { margin-bottom: 15px; color: var(--text-muted); text-transform: capitalize; }
+#modal-meta span { margin-right: 15px; }
+#modal-description { white-space: pre-wrap; line-height: 1.6; color: var(--text-color); }
+#modal-description a { color: var(--primary-color); text-decoration: none; }
+#modal-description a:hover { text-decoration: underline; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .anime-grid { grid-template-columns: 1fr; }
+    .modal-body { flex-direction: column; }
+    #modal-img { width: 100%; height: 250px; margin-right: 0; margin-bottom: 20px; }
+}

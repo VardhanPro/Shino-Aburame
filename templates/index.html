@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shino Aburame - Anime Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1>Shino Aburame - Anime Tracker 🦋</h1>
+            <button id="theme-toggle" title="Toggle theme">☀️</button>
+        </header>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for an anime..." autocomplete="off">
+            <div id="search-results"></div>
+        </div>
+        <div id="message-area"></div>
+        <div id="anime-list" class="anime-grid"></div>
+    </div>
+
+    <div id="details-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <div class="modal-body">
+                <img src="" alt="Anime Cover" id="modal-img">
+                <div class="modal-details">
+                    <h2 id="modal-title"></h2>
+                    <div id="modal-meta" class="modal-meta"></div>
+                    <p id="modal-description"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <template id="anime-card-template">
+        <div class="anime-card" data-id="">
+            <div class="card-image-wrapper">
+                <img src="" alt="Anime Cover" class="card-image">
+                <div class="card-progress-circle"></div>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title"></h3>
+                <div class="card-meta">
+                    <span class="card-anime-type"></span> | <span class="card-episode-count"></span>
+                </div>
+                <p class="card-description"></p>
+                <div class="progress-container">
+                    <progress class="progress-bar" value="0" max="100"></progress>
+                    <span class="progress-text"></span>
+                </div>
+                <div class="card-actions">
+                    <button class="control-btn decrement-btn" title="Decrement">-</button>
+                    <span class="card-progress-episodes"></span>
+                    <button class="control-btn increment-btn" title="Increment">+</button>
+                    <button class="control-btn remove-btn" title="Remove">🗑️</button>
+                </div>
+                 <div class="card-footer">
+                    <span class="dates"></span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        const initialAnimes = {{ animes|tojson|safe }};
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-circle/dist/vanilla-circle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
