@@ -68,7 +68,7 @@ Follow these instructions to get a local copy up and running.
     * Create a new file named `.env` in the project's root directory.
     * Add your AniDB client name to it like so:
         ```ini
-        ANIDB_CLIENT="animetrackerapi"
+        ANIDB_CLIENT="animetrackerash"
         ANIDB_CLIENT_VERSION="1"
         ```
 
